@@ -447,6 +447,14 @@ div, section, main {
 
   p {
     text-align: center; } }
+@media only screen and (min-width: 1400px) {
+  .prog-crc {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%; }
+  .prog-lne {
+    width: 36px;
+    height: 2px; } }
 .circ {
   filter: blur(25px);
   position: absolute;

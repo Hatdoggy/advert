@@ -109,5 +109,16 @@ and (orientation: portrait) {
 
 @media only screen
 and (min-width: 1400px) {
+.prog{
+	&-crc{
+		width: 20px;
+		height: 20px;
+		border-radius:100%;
+	}
+	&-lne{
+		width: 36px;
+		height: 2px;
+	}
+}
 		
 }

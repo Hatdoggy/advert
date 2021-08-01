@@ -3,7 +3,8 @@ import {useState} from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 function App() {
-
+  
+  const [loaded,setLoaded] = useState(false)
   const small = useMediaQuery({
     query: '(max-width : 1000px)'
   }) 
@@ -15,8 +16,8 @@ function App() {
 
   return (
     <div className="App h-vh">
-      {/*<Circ/>*/}
-      <Main show={disp.show} ctr={disp.ctr} upd={updDisp}/>
+      {!small&&<Circ/>}
+      <Main show={disp.show} ctr={disp.ctr} upd={updDisp} load={loaded} set={setLoaded}/>
     </div>
   );
 
