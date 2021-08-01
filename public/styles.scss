@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@700&display=swap');
+@import '_var';
+@import '_struct';
+@import '_def';
+@import '_query';
+
+.circ{
+	filter: blur(25px);
+	position: absolute;	
+	border-radius:100%;
+	&-tr{
+		width: 455px;
+		height: 455px;
+		left: 80%;
+		top: -91px;
+		background: linear-gradient(117.62deg, rgba(75, 75, 75, 0.6) 12.08%, rgba(25, 25, 25, 0.6) 69.71%);	
+	}
+	&-tl{
+		width: 206px;
+		height: 206px;
+		left: 34px;
+		top: 15%;
+		background: linear-gradient(30.53deg, rgba(75, 75, 75, 0.6) 9.82%, rgba(25, 25, 25, 0.6) 77.83%);
+	}	
+	&-bl{
+		left: -203px;
+		top: 80%;
+		width: 735px;
+		height: 735px;		
+		background: linear-gradient(180deg, rgba(75, 75, 75, 0.6) 0%, rgba(25, 25, 25, 0.6) 100%);
+	}
+	&-br{
+		right: 15%;
+		top: 75%;
+		width: 169px;
+		height: 169px;		
+		background: linear-gradient(117.62deg, rgba(75, 75, 75, 0.6) 12.08%, rgba(25, 25, 25, 0.6) 69.71%);
+	}
+}
+
+.loadImg{
+	width: 40%;
+}
+
+.prog{
+	background-color:white;
+	&-crc{
+		width: 10px;
+		height: 10px;
+		border-radius:100%;
+	}
+	&-lne{
+		width: 36px;
+		height: 1px;
+	}
+}
+
+.mont{
+	font-family: $mont;
+	font-weight: 700;
+}.lato{
+	font-family: $lato;
+}
+
+h1{
+	font-size: clamp(2.5rem,7vw,7rem);
+}h2{
+	font-size: clamp(2rem,3vw,3rem);
+}h4{
+	font-size: clamp(1.3rem,1.5vw,1.8rem);
+}p{
+	font-size: clamp(1rem,1.1vw,1.3rem);	
+}

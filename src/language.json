@@ -1,0 +1,20 @@
+{
+	"qna":[
+		{
+			"quest":"How did you receive this invitation?",
+			"choice":["By Email","By Mail","Other"]
+		},
+		{
+			"quest":"Why do you want a new Samsung?",
+			"choice":["I need a new one","I find it the best smartphone brand ever","I am a big fan of Samsung"]
+		},
+		{
+			"quest":"Which function do you use the most on your phone?",
+			"choice":["Camera","Messaging/Apps","Calling"]
+		},
+		{
+			"quest":"Do you currently own a Samsung phone?",
+			"choice":["YES","NO"]
+		}
+	]
+}
