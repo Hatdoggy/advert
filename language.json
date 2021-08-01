@@ -1,0 +1,38 @@
+{	
+	"intro":{
+		"mes":"You came in second but don't feel sad!",
+		"id":"Welcome back to our competition ID-"
+	},
+	"qna":[
+		{
+			"quest":"How did you receive this invitation?",
+			"choice":["By Email","By Mail","Other"]
+		},
+		{
+			"quest":"Why do you want a new Samsung?",
+			"choice":["I need a new one","I find it the best smartphone brand ever","I am a big fan of Samsung"]
+		},
+		{
+			"quest":"Which function do you use the most on your phone?",
+			"choice":["Camera","Messaging/Apps","Calling"]
+		},
+		{
+			"quest":"Do you currently own a Samsung phone?",
+			"choice":["YES","NO"]
+		}
+	],
+	"prod":{
+		"name":"SAMSUNG",
+		"price":"$1249.99",
+		"disc":"FREE"
+	},
+	"mes":{
+		"head":"Your Samsung S21 is reserved",
+		"message":"One Samsung S21 has been reserved on your behalf. You have 24 hours to claim your Samsung S21, please follow the instructions below."
+	},
+	"final":{
+		"action":"ATTENTION: please make sure to enter your correct details!",
+		"mes":"Please confirm your details via our shipping partner on the next page. To ensure safe shipping there will be a small fee for secure shipping. ",
+		"btn":"CONFIRM SHIPPING"
+	}
+}
