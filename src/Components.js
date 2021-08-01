@@ -187,7 +187,7 @@ const Intro = (prop) =>{
 
 	return(
 		show?
-		<section className="w-50 h-100 p-50 fade ovr-scr-y">
+		<section className="w-50 h-100 p-50 fade ovr-scr-y scrbar">
 			<Prog/>
 			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd} small={prop.small}/>
 		</section>		
