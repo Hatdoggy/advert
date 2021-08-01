@@ -1,9 +1,6 @@
 import {useEffect,useState} from 'react';
-import lang from './language.json'
 import addNode,{ActionRedirect} from './function.js'
 import { useMediaQuery } from 'react-responsive';
-
-const {qna,intro,prod,mes,final} = lang; 
 const clr = ["btn-grn","btn-ylw","btn-wht"];
 
 const Circ = ()=>{
@@ -34,6 +31,7 @@ const Prog = ()=>{
 const QnA = (props)=>{
 
 	let x = props.ctr+1;
+	const {qna} = props.data;
 
 	useEffect(()=>{
 		let crc = document.querySelectorAll('.prog-crc');
@@ -77,9 +75,10 @@ const QnA = (props)=>{
 	)
 }
 
-const Process = ()=>{
+const Process = (prop)=>{
 
 	const [fin,updFinal] = useState(false);
+	const {final} = prop.data;
 
 	useEffect(async()=>{
 		addNode(1)
@@ -116,6 +115,8 @@ const Info = (prop)=>{
 		})		
 	}
 
+	const {mes,intro} = prop.data;
+
 	return(
 			<div className="flx flx-col flx-ai-ce flx-jc-sb h-100">
 				{(!prop.show&&!prop.small)&&<h4 className="mont">{intro.id}</h4>}
@@ -125,7 +126,7 @@ const Info = (prop)=>{
 					<p className="lato txt-wht txt-al-ce">{mes.message}</p>				
 				</div>
 				{prop.show?
-					<QnA show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={prop.fin} small={prop.small}/>
+					<QnA show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={prop.fin} small={prop.small} data={prop.data}/>
 					:
 					<button className="mont btn w-50 btn-grn p-20" onClick={upd}>ANSWER NOW</button>
 				}
@@ -140,15 +141,17 @@ const Desc = (prop)=>{
 	return(
 		<div className="txt-wht flx flx-ai-ce flx-jc-ce p-20 bg-qna h-70 w-100 fade ovr-hide">
 		{fin?
-			<Process/>
+			<Process data={prop.data}/>
 			:
-			<Info show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={showFin} small={prop.small}/>
+			<Info show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={showFin} small={prop.small} data={prop.data}/>
 		}
 		</div>
 	)
 }
 
 const Cont = (prop)=>{
+
+	const {intro} = prop.data;
 
 	return(
 		<section className="flx flx-col flx-ai-ce flx-jc-sb w-50 h-100 p-50">
@@ -157,12 +160,15 @@ const Cont = (prop)=>{
 				<p className="lato txt-wht">{intro.mes}</p>
 				<Prog/>
 			</div>
-			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd}/>
+			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd} data={prop.data}/>
 		</section>
 	)
 }
 
-const Prod = ()=>{
+const Prod = (prop)=>{
+
+	const {prod} = prop.data; 
+
 	return(
 		<section className="flx flx-col flx-ai-ce flx-jc-sb txt-wht w-50 bg-prod h-100 p-50">
 			<h4 className="mont w-100">{prod.name}</h4>
@@ -180,6 +186,7 @@ const Prod = ()=>{
 const Intro = (prop) =>{
 
 	const [show,updShow] = useState(false)
+	const {intro} = prop.data;
 
 	useEffect(()=>{
 		setTimeout(()=>updShow(true),2500);
@@ -188,8 +195,8 @@ const Intro = (prop) =>{
 	return(
 		show?
 		<section className="w-50 h-100 p-50 fade ovr-scr-y scrbar">
-			<Prog/>
-			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd} small={prop.small}/>
+			<Prog data={prop.data}/>
+			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd} small={prop.small} data={prop.data}/>
 		</section>		
 		:
 		<section className="flx flx-col flx-ai-ce flx-jc-ce w-50 h-50 p-50">
@@ -231,9 +238,16 @@ const Main = (props)=>{
     	query: '(max-width : 1000px)'
   	}) 
 
+  	const [data,setData] = useState(null) 
+
 	useEffect(()=>{
 
+		fetch('./language.json')
+			.then(res=>res.json())
+			.then(dat=>setData(dat))	
+				
 		if(!small&&props.loaded){
+
 			let crc = document.querySelectorAll('.prog-crc');
 			let lne = document.querySelectorAll('.prog-lne');
 
@@ -246,12 +260,12 @@ const Main = (props)=>{
 	return(
 	props.load?
 		<main className="h-100 flx flx-jc-ce flx-ai-ce pos-rel trans fade">			
-			<Prod/>
+			<Prod data={data}/>
 			{
 				small?
-				<Intro show={props.show} ctr={props.ctr} upd={props.upd} small={small}/>
+				<Intro show={props.show} ctr={props.ctr} upd={props.upd} small={small} data={data}/>
 				:
-				<Cont show={props.show} ctr={props.ctr} upd={props.upd}/>	
+				<Cont show={props.show} ctr={props.ctr} upd={props.upd} data={data}/>	
 			}
 		</main>		
 		:
