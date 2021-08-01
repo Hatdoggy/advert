@@ -69,7 +69,7 @@ const QnA = (props)=>{
 	return(
 		<div className="flx flx-col flx-jc-ce flx-ai-ce m-t-2 quest">
 			<h4 className="mont fade-r">Question {x} of 4</h4>
-			<p className="lato fade-r anim">{qna[3].quest}</p>
+			<p className="lato fade-r anim">{qna[props.ctr].quest}</p>
 			{qna[props.ctr].choice.map((txt,ndx)=>(
 				<button key={ndx} className={`p-20 btn w-100 trans m-t-2 mont anim fade-r ${clr[ndx]}`} onClick={inc}>{txt}</button>
 			))}
