@@ -1,0 +1,124 @@
+@media only screen
+and (max-width: 1000px) {
+	.quest{
+		margin-top: 5%!important;
+	}
+	img{
+		width: 70%!important;
+	}
+}
+
+@media (max-width : 700px){
+	main{
+		flex-direction: column;
+		section{
+			width: auto!important;
+			flex-shrink: 0;
+			height: 50%!important;
+			padding:20px!important;
+			div{
+				height: auto!important;
+			}
+		}
+	}
+
+	button{
+		margin-top: 5%!important;
+		width: 80%!important;
+	}
+
+	.circ{
+		display: none!important;
+	}	
+
+	.App{
+		overflow: scroll;
+	}.bg-qna{
+		margin-top: 5%;
+	}
+	p{
+		text-align: center;
+	}
+}
+
+@media only screen 
+and (min-width : 481px)
+and (max-width : 1000px) 
+and (orientation: landscape){
+	section{
+		padding: 20px!important;
+		div{
+			width: auto!important;
+			height: auto!important;
+		}.bg-qna{
+			margin-top: 5%;
+			button{
+				width: 100%;
+				padding:10px!important;
+				margin-top: 5%;	
+			}
+		}
+	}
+	p{
+		text-align: center;
+	}div#cont{
+		width: 50%!important;
+	}
+}
+
+/* Portrait IPAD */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) {
+	main{
+		flex-direction: column!important;
+		section{
+			width: auto!important;
+			flex-shrink: 0;
+			height: 50%!important;
+			padding:20px!important;
+			div{
+				height: auto!important;
+			}
+			img{
+				width: 50%!important;
+			}
+		}
+	}
+
+	button{
+		margin-top: 5%!important;
+		width: 80%!important;
+	}
+
+	.circ{
+		display: none!important;
+	}	
+
+	.App{
+		overflow: scroll;
+	}.bg-qna{
+		margin-top: 5%;
+		height: 100%!important;
+	}
+	p{
+		text-align: center;
+	}
+}
+
+@media only screen
+and (min-width: 1400px) {
+.prog{
+	&-crc{
+		width: 20px;
+		height: 20px;
+		border-radius:100%;
+	}
+	&-lne{
+		width: 36px;
+		height: 2px;
+	}
+}
+		
+}
