@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react';
-import addNode,{ActionRedirect} from './function.js'
+import addNode,{ActionRedirect,fetchLocal,identify} from './function.js'
 import { useMediaQuery } from 'react-responsive';
 const clr = ["btn-grn","btn-ylw","btn-wht"];
 
@@ -240,12 +240,23 @@ const Main = (props)=>{
 
   	const [data,setData] = useState(null) 
 
-	useEffect(()=>{
+  	const set = ()=>{
+    	fetch('data/language.json',{
+   		   headers : { 
+   		     'Content-Type': 'application/json',
+     		 'Accept': 'application/json'
+    	   }
+    	})
+		.then(res=>res.json())
+		.then(dat=>{
+			console.log(dat)
+			setData(dat)
+		})
+  	}
+			
+	useEffect(()=>{	
+		set();
 
-		fetch('./language.json')
-			.then(res=>res.json())
-			.then(dat=>setData(dat))	
-				
 		if(!small&&props.loaded){
 
 			let crc = document.querySelectorAll('.prog-crc');
