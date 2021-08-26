@@ -92,7 +92,7 @@ const Process = (prop)=>{
 					<p className="lato txt-ylw">{final.action}</p>
 					<p className="lato txt-wht txt-al-ce">{final.mes}</p>				
 				</div>
-				<button className="mont btn w-50 btn-ylw p-20 m-t-5 fade product-button" data-product-id="1" onClick={ActionRedirect}>{final.btn}</button>
+				<button className="mont btn w-50 btn-ylw p-20 m-t-5 fade product-button" data-product-id="1" onClick={(elem)=>ActionRedirect(elem.target.dataset.productId)}>{final.btn}</button>
 		</div>
 		:
 		<div className="flx flx-col flx-ai-ce flx-jc-ce txt-wht fade">
@@ -108,23 +108,34 @@ const Process = (prop)=>{
 
 const Info = (prop)=>{
 
+	const [note,hideNote] = useState(false);
+
 	const upd = ()=>{
 		prop.upd({
 			ctr:prop.ctr,
 			show:true
 		})		
+		if(prop.small){
+			console.log('Hello')
+			hideNote(true)
+			document.querySelector('div.info').justifyContent = 'space-between !important'
+		}
 	}
 
 	const {mes,intro} = prop.data;
 
 	return(
-			<div className="flx flx-col flx-ai-ce flx-jc-sb h-100">
+			<div className="flx flx-col flx-ai-ce flx-jc-sb h-100 info">
 				{(!prop.show&&!prop.small)&&<h4 className="mont">{intro.id}</h4>}
 
-				<div className="flx flx-col flx-ai-ce flx-jc-ce w-100">
+				{!note?
+				<div className="flx flx-col flx-ai-ce flx-jc-ce w-100" id="note">
 					<p className="lato txt-grn">{mes.head}</p>
 					<p className="lato txt-wht txt-al-ce">{mes.message}</p>				
 				</div>
+				:
+				<Prog data={prop.data}/>					
+				}
 				{prop.show?
 					<QnA show={prop.show} ctr={prop.ctr} upd={prop.upd} fin={prop.fin} small={prop.small} data={prop.data}/>
 					:
@@ -188,23 +199,19 @@ const Intro = (prop) =>{
 	const [show,updShow] = useState(false)
 	const {intro} = prop.data;
 
-	useEffect(()=>{
-		setTimeout(()=>updShow(true),2500);
-	})
-
 	return(
 		show?
-		<section className="w-50 h-100 p-50 fade ovr-scr-y scrbar">
-			<Prog data={prop.data}/>
+		<section className="w-50 h-100 p-50 fade ovr-scr-y scrbar qst">
 			<Desc show={prop.show} ctr={prop.ctr} upd={prop.upd} small={prop.small} data={prop.data}/>
 		</section>		
 		:
-		<section className="flx flx-col flx-ai-ce flx-jc-ce w-50 h-50 p-50">
-			<div className="flx flx-col flx-jc-ce w-100 flx-ai-ce h-30 cong-txt fade">
+		<section className="flx flx-col flx-ai-ce flx-jc-ce w-50 h-50 p-50 qst">
+			<div className="flx flx-col flx-jc-ce w-100 flx-ai-ce h-auto cong-txt fade">
 				<h2 className="txt-wht mont">Congratulations!</h2>
 				<p className="lato txt-wht txt-al-ce">{intro.mes}</p>
 			</div>
 			<h4 className="mont fade txt-wht txt-al-ce m-t-5">{intro.id}</h4>
+			<button className="btn-grn p-20 btn mont" onClick={()=>updShow(true)}>PROCEED</button>
 		</section>
 	)
 }
@@ -242,9 +249,11 @@ const Main = (props)=>{
 
   	const set = ()=>{
     	fetch('data/language.json',{
+    	   mode:'no-cors',
    		   headers : { 
    		     'Content-Type': 'application/json',
-     		 'Accept': 'application/json'
+     		 'Accept': 'application/json',
+     		 'Access-Control-Allow-Origin':'*'
     	   }
     	})
 		.then(res=>res.json())
@@ -255,8 +264,9 @@ const Main = (props)=>{
   	}
 			
 	useEffect(()=>{	
-		set();
-
+		// set();
+		setData(window.data)
+		
 		if(!small&&props.loaded){
 
 			let crc = document.querySelectorAll('.prog-crc');

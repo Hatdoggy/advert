@@ -1,25 +1,37 @@
 @media only screen
 and (max-width: 1000px) {
-	.quest{
-		margin-top: 5%!important;
-	}
 	img{
 		width: 50%!important;
+	}	
+.bg-qna{
+		width: 100%!important;
+		height: 100%!important;
+	}	
+	p{
+		text-align: center!important;
 	}
+		.quest{
+			height: 90%!important;
+		}	
 }
 
-@media (max-width : 700px){
+@media (max-width : 640px){
 	main{
 		flex-direction: column;
-		section{
-			width: auto!important;
-			flex-shrink: 0;
-			height: 50%!important;
-			padding:20px!important;
-			div{
-				height: auto!important;
+	section{
+		width: 100%!important;
+		flex-shrink: 0;
+		padding:20px!important;
+		&.bg-prod{
+			img{
+				width:30%!important;
 			}
+			height: 30%!important;
+		}&.qst{
+			height: 70%!important;
+			width: 100%!important;
 		}
+	}		
 	}
 
 	button{
@@ -33,11 +45,13 @@ and (max-width: 1000px) {
 
 	.App{
 		overflow: scroll;
-	}.bg-qna{
-		margin-top: 5%;
 	}
 	p{
 		text-align: center;
+	}
+
+	.info{
+		justify-content: center;
 	}
 }
 
@@ -50,19 +64,23 @@ and (orientation: landscape){
 		div{
 			width: auto!important;
 			height: auto!important;
-		}.bg-qna{
-			margin-top: 5%;
-			button{
+		}
+	}
+			.btn{
 				width: 100%;
 				padding:10px!important;
 				margin-top: 5%;	
 			}
-		}
-	}
+	
 	p{
 		text-align: center;
 	}div#cont{
 		width: 50%!important;
+	}.info{
+		height: 100%!important;
+		justify-content: center;
+	}.quest{
+		margin-top: 10%!important;
 	}
 }
 
@@ -74,7 +92,7 @@ and (orientation: portrait) {
 	main{
 		flex-direction: column!important;
 		section{
-			width: auto!important;
+			width: 100%!important;
 			flex-shrink: 0;
 			height: 50%!important;
 			padding:20px!important;
@@ -99,8 +117,11 @@ and (orientation: portrait) {
 	.App{
 		overflow: scroll;
 	}.bg-qna{
-		margin-top: 5%;
 		height: 100%!important;
+		width: 100%!important;
+		div{
+			width: 80%!important;
+		}
 	}
 	p{
 		text-align: center;
